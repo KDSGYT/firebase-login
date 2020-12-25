@@ -1,10 +1,16 @@
+import { FC } from 'react';
 import './SubmitButton.scss';
 
-function SubmitButton() {
+
+interface props{
+    submit:any
+}
+
+const SubmitButton:FC<props> = ({submit}) => {
 
     return (
         <span id="submit-button">
-            <input type="submit" id="submit" value="Next"/>
+            <input type="submit" id="submit" onClick={submit} value="Next"/>
 
         </span>
     )

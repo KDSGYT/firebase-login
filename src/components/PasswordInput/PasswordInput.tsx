@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -7,27 +7,27 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import FormControl from '@material-ui/core/FormControl';
 import './PasswordInput.scss';
+
 interface State {
-    amount: string;
     password: string;
-    weight: string;
-    weightRange: string;
     showPassword: boolean;
 }
 
+interface props {
+    setFormValues: any;
+    formValues: Object;
+}
 
-function PasswordInput() {
+const PasswordInput: FC<props> = ({ setFormValues, formValues }) => {
 
     const [values, setValues] = useState<State>({
-        amount: '',
         password: '',
-        weight: '',
-        weightRange: '',
         showPassword: false,
     });
 
     const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
         setValues({ ...values, [prop]: event.target.value });
+        setFormValues({...formValues, password: values.password })
     };
 
     const handleClickShowPassword = () => {
@@ -39,8 +39,11 @@ function PasswordInput() {
     };
 
     return (
-        <FormControl variant="outlined"  id="password-input">
+        <FormControl variant="outlined" id="password-input">
+            {/* Label for the password input field */}
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+
+            {/* Password Input field */}
             <OutlinedInput
                 id="outlined-adornment-password"
                 type={values.showPassword ? 'text' : 'password'}
@@ -48,6 +51,8 @@ function PasswordInput() {
                 onChange={handleChange('password')}
                 endAdornment={
                     <InputAdornment position="end">
+
+                        {/* Toggle visibility */}
                         <IconButton
                             aria-label="toggle password visibility"
                             onClick={handleClickShowPassword}
@@ -56,10 +61,13 @@ function PasswordInput() {
                         >
                             {values.showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
+
                     </InputAdornment>
                 }
+
                 labelWidth={70}
             />
+
         </FormControl>
     )
 }
