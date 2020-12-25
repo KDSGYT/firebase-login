@@ -1,9 +1,12 @@
 import './SubmitButton.scss';
 
 function SubmitButton() {
-    
+
     return (
-        <input type="submit" id="submit" />
+        <span id="submit-button">
+            <input type="submit" id="submit" value="Next"/>
+
+        </span>
     )
 }
 

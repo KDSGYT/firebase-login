@@ -6,7 +6,7 @@ function TextInput() {
         <TextField
             className="text-input"
             id="outlined-basic"
-            label="Outlined"
+            label="Username"
             variant="outlined"
         />
     )
