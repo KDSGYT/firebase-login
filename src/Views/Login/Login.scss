@@ -8,7 +8,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    overflow: hidden;
+
+    h1 {
+        color: black;
+    }
 
     #inner-border {
         margin: auto;
@@ -18,5 +21,16 @@
         max-height: 80%;
         max-width: 90%;
         padding: 10%;
+
+        #login-form {
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            #submit {
+                height: 10%;
+            }
+        }
     }
 }
