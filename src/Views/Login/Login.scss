@@ -1,0 +1,22 @@
+#login {
+    border: 2px solid rgb(112, 112, 112);
+    width: 50vh;
+    min-width: 300px;
+    height: 70vh;
+    min-height: 70vh;
+    content: "";
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+
+    #inner-border {
+        margin: auto;
+        border: 2px solid rgb(177, 177, 177);
+        width: 70%;
+        height: 80%;
+        max-height: 80%;
+        max-width: 90%;
+        padding: 10%;
+    }
+}
