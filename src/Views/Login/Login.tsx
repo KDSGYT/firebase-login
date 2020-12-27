@@ -1,5 +1,5 @@
 import './Login.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, FC } from 'react'
 import TextInput from '../../components/TextInput/TextInput'
 import PasswordInput from '../../components/PasswordInput/PasswordInput'
 import SubmitButton from '../../components/SubmitButton/SubmitButton'
@@ -7,19 +7,23 @@ import SeperateBar from '../../components/SeperateBar/SeperateBar'
 import { loginWithEmailAndPassword } from '../../assets/functions'
 
 interface state {
-    username:string,
-    password:string
+    username: string,
+    password: string
+}
+interface props{
+    setUserState: any
+
 }
 
-function Login() {
+const Login: FC<props> = ({setUserState}) => {
 
     const [formValues, setFormValues] = useState<state>({
-        username:"",
-        password:""
+        username: "",
+        password: "",
     });
-    function handleSubmit(event:any) {
+    function handleSubmit(event: any) {
         event.preventDefault()
-        loginWithEmailAndPassword(formValues.username, formValues.password)
+        loginWithEmailAndPassword(formValues.username, formValues.password, setUserState)
     }
 
     return (
