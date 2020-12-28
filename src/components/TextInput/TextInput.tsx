@@ -3,17 +3,17 @@ import TextField from '@material-ui/core/TextField';
 import { FC } from 'react';
 
 
-interface props{
-    setFormValues:any;
-    formValues:object;
+interface props {
+    setFormValues: any;
+    formValues: object;
 }
 
-const TextInput:FC<props> = ({setFormValues, formValues}) => {
-    
-    function handleChange(event:any){
+const TextInput: FC<props> = ({ setFormValues, formValues }) => {
+
+    function handleChange(event: any) {
         // console.log(event.currentTarget.value)
-        setFormValues({...formValues, username:event.currentTarget.value})
-    }    
+        setFormValues({ ...formValues, username: event.currentTarget.value })
+    }
 
     return (
         <TextField

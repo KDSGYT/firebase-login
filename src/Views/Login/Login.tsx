@@ -5,14 +5,16 @@ import PasswordInput from '../../components/PasswordInput/PasswordInput'
 import SubmitButton from '../../components/SubmitButton/SubmitButton'
 import SeperateBar from '../../components/SeperateBar/SeperateBar'
 import { loginWithEmailAndPassword } from '../../assets/functions'
+// import GoogleLogin from '../../components/GoogleLogin/GoogleLogin'
 
 interface state {
     username: string,
     password: string
 }
+
 interface props{
     setUserState: any
-
+ 
 }
 
 const Login: FC<props> = ({setUserState}) => {
@@ -24,6 +26,7 @@ const Login: FC<props> = ({setUserState}) => {
     function handleSubmit(event: any) {
         event.preventDefault()
         loginWithEmailAndPassword(formValues.username, formValues.password, setUserState)
+        window.location.replace('#/profile')
     }
 
     return (
@@ -44,6 +47,7 @@ const Login: FC<props> = ({setUserState}) => {
                     />
                 </form>
                 <SeperateBar />
+                {/* <GoogleLogin /> */}
             </div>
         </section>
     )
