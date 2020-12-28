@@ -15,33 +15,33 @@ function App() {
     <div className="App App-header">
       <Router>
         <Switch>
+          <UserCTXProvider value={{ userInfo, setUserInfo }}>
 
-          {/* Route to login page */}
-          <Route exact path="/">
-            <Redirect to="/login" /> {/*redirect to login page */}
-          </Route>
+            {/* Route to login page */}
+            <Route exact path="/">
+              <Redirect to="/login" /> {/*redirect to login page */}
+            </Route>
 
-          <Route exact path="/login">
-            <Login
-              setUserState={setUserInfo}
-            />
-          </Route>
+            <Route exact path="/login">
+              <Login
+                setUserState={setUserInfo}
+              />
+            </Route>
 
-          {/* User should only be able to access this link is loggedin */}
-          <Route exact path="/profile">
-            
-            {/* User data will be consumed by the following components */}
-            <UserCTXProvider value={userInfo}>
+            {/* User should only be able to access this link is loggedin */}
+            <Route exact path="/profile">
+
+              {/* User data will be consumed by the following components */}
               <UserCTXConsumer>
-                {(userInfo: any) => {
+                {(value: any) => {
                   console.log(userInfo)
                   return <Profile
-                    email={userInfo.email}
+                    email={value.userInfo.email}
                   />
                 }}
               </UserCTXConsumer>
-            </UserCTXProvider>
-          </Route>
+            </Route>
+          </UserCTXProvider>
           <Route>
             <NotFound />
           </Route>

@@ -5,7 +5,7 @@ import PasswordInput from '../../components/PasswordInput/PasswordInput'
 import SubmitButton from '../../components/SubmitButton/SubmitButton'
 import SeperateBar from '../../components/SeperateBar/SeperateBar'
 import { loginWithEmailAndPassword } from '../../assets/functions'
-// import GoogleLogin from '../../components/GoogleLogin/GoogleLogin'
+import GoogleLogin from '../../components/GoogleLogin/GoogleLogin'
 
 interface state {
     username: string,
@@ -47,7 +47,7 @@ const Login: FC<props> = ({setUserState}) => {
                     />
                 </form>
                 <SeperateBar />
-                {/* <GoogleLogin /> */}
+                <GoogleLogin />
             </div>
         </section>
     )
