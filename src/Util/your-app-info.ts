@@ -9,5 +9,5 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 // firebase.analytics();
 const fireAuth = firebase.auth()
-
+export const googleSigninProvider = new firebase.auth.GoogleAuthProvider()
 export default fireAuth

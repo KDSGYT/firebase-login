@@ -1,5 +1,6 @@
 import fireAuth, { googleSigninProvider } from '../Util/Firebase';
-
+import { userCTX } from '../components/StateHolder/Stateholder';
+import { useContext } from 'react'
 /**
  * Login with Email and password onto account
  * @param email used as username
@@ -7,6 +8,7 @@ import fireAuth, { googleSigninProvider } from '../Util/Firebase';
  * @param setUserState used to set the global user state
  */
 export function loginWithEmailAndPassword(email: string, password: string, setUserState: any) {
+
   fireAuth.signInWithEmailAndPassword(email, password)
     .then(data => data.user)
     .then((userData) => {
@@ -21,10 +23,14 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
     });
 }
 
-export function loginWithGoogle() {
+export function loginWithGoogle(setState: any) {
+
   fireAuth.signInWithPopup(googleSigninProvider)
-    .then(result => {
-      console.log(result)
+    .then((result: any) => result.user)
+    .then((profile: any) => {
+      setState(profile);
+      window.location.replace('#/profile')
+
     })
     .catch(function (error) {
       // Handle Errors here.

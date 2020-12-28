@@ -1,27 +1,35 @@
 import { Button } from "@material-ui/core";
 import { loginWithGoogle } from "../../assets/functions";
+import { UserCTXConsumer } from "../StateHolder/Stateholder";
 import './GoogleLogin.scss';
 
-// import * as signInWithGoogleGraphic from '../../assets/img/google-login.png'
-
 const GoogleLogin = () => {
+
+    /**
+     * 
+     * @param value CTX value recevied with function
+     */
+    async function handleClick(value: any) {
+        await loginWithGoogle(value.setUserInfo) // function to set state
+
+    }
+
     return (
-        // <Button 
-        //     id="google-login-button"
-        // >
-        // </Button>
-        <Button
-            onClick={loginWithGoogle}
-        >
-            <div id="gSignInWrapper">
-                {/* <span className="label">Sign in with:</span> */}
-                <div id="customBtn" className="customGPlusSignIn">
-                    <span className="icon"></span>
-                    <span className="buttonText">Google</span>
-                </div>
-            </div>
-            <div id="name"></div>
-        </Button>
+        <UserCTXConsumer>
+            {(value: any) => (
+                <Button
+                    onClick={() => handleClick(value)}
+                >
+                    {/* Google Signin Code */}
+                    <div id="gSignInWrapper">
+                        <div id="customBtn" className="customGPlusSignIn">
+                            <span className="icon"></span>
+                            <span className="buttonText">Google</span>
+                        </div>
+                    </div>
+                </Button>
+            )}
+        </UserCTXConsumer>
     )
 }
 
