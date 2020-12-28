@@ -2,10 +2,11 @@
 #google-login-button{
     // background-color: black;
     background-image: $google-login;
-    border: 2px solid black;
+    // border: ;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 80%;
+    width: auto;
+    min-width: 60%;
     height: 10%;
     content: "";
     &:hover{
