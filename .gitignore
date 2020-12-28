@@ -6,7 +6,7 @@
 .pnp.js
 
 #APP-configuration
-src/Util/Firebase.ts
+/src/Util/Firebase.ts
 
 # testing
 /coverage

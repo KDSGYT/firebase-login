@@ -1,0 +1,14 @@
+@import '../../assets/Variables.scss';
+#google-login-button{
+    // background-color: black;
+    background-image: $google-login;
+    border: 2px solid black;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 10%;
+    content: "";
+    &:hover{
+        box-shadow: 0px 0px 10px rgba(24, 73, 233, 0.575);
+    }
+}
