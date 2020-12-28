@@ -10,7 +10,7 @@ const SubmitButton:FC<props> = ({submit}) => {
 
     return (
         <span id="submit-button">
-            <input type="submit" id="submit" onClick={submit} value="Next"/>
+            <input type="submit" id="submit" onClick={submit} value="LogIn"/>
 
         </span>
     )
