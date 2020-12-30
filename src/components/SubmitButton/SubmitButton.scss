@@ -1,5 +1,7 @@
 @import '../../assets/Variables.scss';
 #submit-button {
+    outline:none;
+    margin-bottom: 2%;
     #submit {
         font-size: 20px;
         border:none;

@@ -17,8 +17,8 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
       // ...
     })
     .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
       console.error(error);
     });
 }
@@ -29,12 +29,11 @@ export function loginWithGoogle(setState: any, callback:any) {
     .then(() =>
       fireAuth.signInWithPopup(googleSigninProvider)
         .then((result: any) => result.user.providerData[0])
-        .then(({displayName, emailVerified, photoUrl, email}) => {
-          // console.log(profile);
+        .then(({displayName, uid, photoURL, email}) => {
           setState({
               name: displayName,
-              emailVerified,
-              photoUrl,
+              photoURL,
+              uid,
               email
             });
           callback()
@@ -44,12 +43,12 @@ export function loginWithGoogle(setState: any, callback:any) {
 
     .catch(function (error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
+      // // The email of the user's account used.
+      // var email = error.email;
+      // // The firebase.auth.AuthCredential type that was used.
+      // var credential = error.credential;
       console.error(error)
       // ...
     });

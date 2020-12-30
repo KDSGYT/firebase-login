@@ -1,0 +1,31 @@
+#profile {
+    height: 50vh;
+    width: 20vw;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border: 2px solid black;
+    background-color: rgb(255, 200, 180);
+    border-radius: 7px;
+
+    #lower-section,
+    #upper-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #upper-section {
+        margin-top: 10%;
+        height: 60%;
+
+        h1 {
+            font-size: 2em;
+        }
+    }
+
+    #lower-section {
+        height: 40%;
+    }
+}

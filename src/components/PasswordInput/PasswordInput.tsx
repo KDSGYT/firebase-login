@@ -16,9 +16,10 @@ interface State {
 interface props {
     setFormValues: any;
     formValues: Object;
+    className?:string;
 }
 
-const PasswordInput: FC<props> = ({ setFormValues, formValues }) => {
+const PasswordInput: FC<props> = ({ setFormValues, formValues, className }) => {
 
     const [values, setValues] = useState<State>({
         password: '',
@@ -39,7 +40,7 @@ const PasswordInput: FC<props> = ({ setFormValues, formValues }) => {
     };
 
     return (
-        <FormControl variant="outlined" id="password-input">
+        <FormControl variant="outlined" id="password-input" className={className}>
             {/* Label for the password input field */}
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
 

@@ -12,12 +12,12 @@ interface state {
     password: string
 }
 
-interface props{
+interface props {
     setUserState: any
- 
+
 }
 
-const Login: FC<props> = ({setUserState}) => {
+const Login: FC<props> = ({ setUserState }) => {
 
     const [formValues, setFormValues] = useState<state>({
         username: "",
@@ -39,10 +39,13 @@ const Login: FC<props> = ({setUserState}) => {
                         formValues={formValues}
                     />
                     <PasswordInput
+                        className="input-field"
                         setFormValues={setFormValues}
                         formValues={formValues}
                     />
                     <SubmitButton
+                        className="input-field"
+                        value="LogIn"
                         submit={handleSubmit}
                     />
                 </form>

@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import Login from './Views/Login/Login';
-import Profile from './Views/Profiile/Profile'
+import Profile from './Views/Profile/Profile'
 import { UserCTXConsumer, UserCTXProvider } from './components/StateHolder/Stateholder';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import NotFound from './Views/NotFound/NotFound';
@@ -10,7 +10,7 @@ function App() {
 
   // Global User Data
   const [userInfo, setUserInfo] = useState({});
-  
+
   // console log the changes to state
   // useEffect(() => {
   //   console.log(userInfo)
@@ -38,14 +38,14 @@ function App() {
             <Route exact path="/profile">
 
               {/* User data will be consumed by the following components */}
-              {/* <UserCTXConsumer>
+              <UserCTXConsumer>
                 {(value: any) => {
-                  console.log(value) */}
-                   <Profile
-                    // email={value.userInfo.email}
+                  console.log(value)
+                  return <Profile
+                    userInfo={value.userInfo}
                   />
-                {/* }} */}
-              {/* </UserCTXConsumer> */}
+                }}
+              </UserCTXConsumer>
             </Route>
           </UserCTXProvider>
           <Route>
