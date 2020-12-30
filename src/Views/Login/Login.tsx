@@ -6,6 +6,7 @@ import SubmitButton from '../../components/SubmitButton/SubmitButton'
 import SeperateBar from '../../components/SeperateBar/SeperateBar'
 import { loginWithEmailAndPassword } from '../../assets/functions'
 import GoogleLogin from '../../components/GoogleLogin/GoogleLogin'
+import { useHistory } from 'react-router-dom'
 
 interface state {
     username: string,
@@ -19,10 +20,24 @@ interface props {
 
 const Login: FC<props> = ({ setUserState }) => {
 
+    const history: any = useHistory();
+
+
     const [formValues, setFormValues] = useState<state>({
         username: "",
         password: "",
     });
+
+
+
+    useEffect(() => {
+        const data: any = localStorage.getItem('userData')
+
+        if (data) {
+            history.push('/profile');
+        }
+    })
+
     function handleSubmit(event: any) {
         event.preventDefault()
         loginWithEmailAndPassword(formValues.username, formValues.password, setUserState)

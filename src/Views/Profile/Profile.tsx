@@ -16,7 +16,7 @@ const Profile: FC<props> = ({ userInfo }) => {
         <section id="profile">
             <div id="upper-section">
                 <ProfilePhoto
-                    photoURL={photoURL.replace('96', '300')}//change the size of picture
+                    photoURL={photoURL}//change the size of picture
                 />
                 <h1>{name}</h1>
             </div>

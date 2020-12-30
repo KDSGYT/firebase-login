@@ -23,23 +23,32 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
     });
 }
 
-export function loginWithGoogle(setState: any, callback:any) {
+/**
+ * 
+ * @param setState set global user information
+ * @param callback callback function
+ */
+export function loginWithGoogle(setState: any, callback: any) {
   // Adding session presistance 
-  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.NONE)
+  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.LOCAL)
+    // .then((res) => console.log(res))
     .then(() =>
       fireAuth.signInWithPopup(googleSigninProvider)
-        .then((result: any) => result.user.providerData[0])
-        .then(({displayName, uid, photoURL, email}) => {
-          setState({
-              name: displayName,
-              photoURL,
-              uid,
-              email
-            });
-          callback()
+    ).then((result: any) => result.user.providerData[0])
+    .then(({ displayName, uid, photoURL, email }) => {
+      const data = {
+        name: displayName,
+        photoURL: photoURL.replace('96', '300'),
+        uid,
+        email
+      }
+      localStorage.setItem('userData', JSON.stringify(data))
+      
+      setState(data);
+      callback()
 
-        })
-    )
+    })
+    // )
 
     .catch(function (error) {
       // Handle Errors here.

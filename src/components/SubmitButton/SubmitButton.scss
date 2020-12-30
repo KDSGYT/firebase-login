@@ -1,8 +1,9 @@
 @import '../../assets/Variables.scss';
 #submit-button {
-    outline:none;
     margin-bottom: 2%;
     #submit {
+        cursor: pointer;
+        outline:none;
         font-size: 20px;
         border:none;
         padding: 5px 10px ;

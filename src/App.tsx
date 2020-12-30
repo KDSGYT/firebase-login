@@ -3,19 +3,17 @@ import { useEffect, useState } from 'react';
 import Login from './Views/Login/Login';
 import Profile from './Views/Profile/Profile'
 import { UserCTXConsumer, UserCTXProvider } from './components/StateHolder/Stateholder';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch, useHistory } from 'react-router-dom'
 import NotFound from './Views/NotFound/NotFound';
 
 function App() {
 
+
   // Global User Data
-  const [userInfo, setUserInfo] = useState({});
+  const data: any = localStorage.getItem('userData')
+  const [userInfo, setUserInfo] = useState(JSON.parse(data));
 
-  // console log the changes to state
-  // useEffect(() => {
-  //   console.log(userInfo)
-  // }, [userInfo]);
-
+  
 
   return (
     <div className="App App-header">
@@ -40,7 +38,7 @@ function App() {
               {/* User data will be consumed by the following components */}
               <UserCTXConsumer>
                 {(value: any) => {
-                  console.log(value)
+                  // console.log(value)
                   return <Profile
                     userInfo={value.userInfo}
                   />
