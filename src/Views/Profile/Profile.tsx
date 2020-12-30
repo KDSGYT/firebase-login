@@ -1,15 +1,22 @@
 import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
+import { logOut } from '../../assets/functions';
 import ProfilePhoto from '../../components/ProfilePhoto/ProfilePhoto';
 import SubmitButton from '../../components/SubmitButton/SubmitButton';
 import './Profile.scss'
+
+
 interface props {
     userInfo: any
 }
 const Profile: FC<props> = ({ userInfo }) => {
+
+    const history = useHistory();
     const { email, photoURL, name } = userInfo;
 
-    function handleSubmit(){
-        
+    function handleSubmit(e:any) {
+        e.preventDefault()
+        logOut(() => history.push('/login'));
     }
 
     return (
@@ -23,7 +30,7 @@ const Profile: FC<props> = ({ userInfo }) => {
             <div id="lower-section">
                 <h3>{email}</h3>
             </div>
-            <SubmitButton 
+            <SubmitButton
                 submit={handleSubmit}
                 value="Log Out"
 

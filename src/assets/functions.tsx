@@ -1,7 +1,5 @@
 import fireAuth, { firebaseExport, googleSigninProvider } from '../Util/Firebase';
-// import { userCTX } from '../components/StateHolder/Stateholder';
-// import { useContext } from 'react'
-// import { useHistory } from 'react-router-dom';
+
 /**
  * Login with Email and password onto account
  * @param email used as username
@@ -30,7 +28,7 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
  */
 export function loginWithGoogle(setState: any, callback: any) {
   // Adding session presistance 
-  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.LOCAL)
+  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.NONE)
     // .then((res) => console.log(res))
     .then(() =>
       fireAuth.signInWithPopup(googleSigninProvider)
@@ -43,7 +41,7 @@ export function loginWithGoogle(setState: any, callback: any) {
         email
       }
       localStorage.setItem('userData', JSON.stringify(data))
-      
+
       setState(data);
       callback()
 
@@ -51,15 +49,16 @@ export function loginWithGoogle(setState: any, callback: any) {
     // )
 
     .catch(function (error) {
-      // Handle Errors here.
-      // var errorCode = error.code;
-      // var errorMessage = error.message;
-      // // The email of the user's account used.
-      // var email = error.email;
-      // // The firebase.auth.AuthCredential type that was used.
-      // var credential = error.credential;
       console.error(error)
-      // ...
     });
   return;
+}
+
+
+export function logOut(callBack:any) {
+  fireAuth.signOut()
+  .then(() => {
+    window.localStorage.clear();
+    callBack();
+  })
 }
