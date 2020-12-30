@@ -22,7 +22,8 @@ src/Util/Firebase.ts*
 .env.production.local
 .eslintcache
 
-#
+#logs and notes
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+issues.txt*
