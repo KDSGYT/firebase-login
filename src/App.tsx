@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Login from './Views/Login/Login';
 import Profile from './Views/Profiile/Profile'
 import { UserCTXConsumer, UserCTXProvider } from './components/StateHolder/Stateholder';
-import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import NotFound from './Views/NotFound/NotFound';
 
 function App() {

@@ -1,4 +1,4 @@
-import fireAuth, { googleSigninProvider } from '../Util/Firebase';
+import fireAuth, { firebaseExport, googleSigninProvider } from '../Util/Firebase';
 import { userCTX } from '../components/StateHolder/Stateholder';
 import { useContext } from 'react'
 /**
@@ -25,13 +25,18 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
 
 export function loginWithGoogle(setState: any) {
 
-  fireAuth.signInWithPopup(googleSigninProvider)
-    .then((result: any) => result.user)
-    .then((profile: any) => {
-      setState(profile);
-      window.location.replace('#/profile')
+  // Adding session presistance 
+  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.LOCAL)
+    .then(() =>
+      fireAuth.signInWithPopup(googleSigninProvider)
+        .then((result: any) => result.user)
+        .then((profile: any) => {
+          setState(profile);
+          window.location.replace('/profile')
 
-    })
+        })
+    )
+
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
