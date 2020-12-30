@@ -1,6 +1,7 @@
 import fireAuth, { firebaseExport, googleSigninProvider } from '../Util/Firebase';
-import { userCTX } from '../components/StateHolder/Stateholder';
-import { useContext } from 'react'
+// import { userCTX } from '../components/StateHolder/Stateholder';
+// import { useContext } from 'react'
+// import { useHistory } from 'react-router-dom';
 /**
  * Login with Email and password onto account
  * @param email used as username
@@ -12,7 +13,6 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
   fireAuth.signInWithEmailAndPassword(email, password)
     .then(data => data.user)
     .then((userData) => {
-      // Save the user information in the global state
       setUserState(userData);
       // ...
     })
@@ -23,16 +23,21 @@ export function loginWithEmailAndPassword(email: string, password: string, setUs
     });
 }
 
-export function loginWithGoogle(setState: any) {
-
+export function loginWithGoogle(setState: any, callback:any) {
   // Adding session presistance 
-  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.LOCAL)
+  fireAuth.setPersistence(firebaseExport.auth.Auth.Persistence.NONE)
     .then(() =>
       fireAuth.signInWithPopup(googleSigninProvider)
-        .then((result: any) => result.user)
-        .then((profile: any) => {
-          setState(profile);
-          window.location.replace('/profile')
+        .then((result: any) => result.user.providerData[0])
+        .then(({displayName, emailVerified, photoUrl, email}) => {
+          // console.log(profile);
+          setState({
+              name: displayName,
+              emailVerified,
+              photoUrl,
+              email
+            });
+          callback()
 
         })
     )

@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Login from './Views/Login/Login';
 import Profile from './Views/Profiile/Profile'
 import { UserCTXConsumer, UserCTXProvider } from './components/StateHolder/Stateholder';
@@ -10,6 +10,12 @@ function App() {
 
   // Global User Data
   const [userInfo, setUserInfo] = useState({});
+  
+  // console log the changes to state
+  // useEffect(() => {
+  //   console.log(userInfo)
+  // }, [userInfo]);
+
 
   return (
     <div className="App App-header">
@@ -32,14 +38,14 @@ function App() {
             <Route exact path="/profile">
 
               {/* User data will be consumed by the following components */}
-              <UserCTXConsumer>
+              {/* <UserCTXConsumer>
                 {(value: any) => {
-                  console.log(userInfo)
-                  return <Profile
-                    email={value.userInfo.email}
+                  console.log(value) */}
+                   <Profile
+                    // email={value.userInfo.email}
                   />
-                }}
-              </UserCTXConsumer>
+                {/* }} */}
+              {/* </UserCTXConsumer> */}
             </Route>
           </UserCTXProvider>
           <Route>

@@ -1,15 +1,21 @@
 import { FC } from 'react';
+import { UserCTXConsumer } from '../../components/StateHolder/Stateholder';
 
 interface props {
-    email: string
+    // email: string
 }
 
-const Profile: FC<props> = ({ email }) => {
+const Profile: FC<props> = ({ }) => {
 
     return (
-        <div>
-            Email:{email}
-        </div>
+        <UserCTXConsumer>
+            {(value: any) => {
+                // console.log(value)
+                return (<div>
+                    Email:{value.userInfo.email}
+                </div>)
+            }}
+        </UserCTXConsumer>
     )
 }
 

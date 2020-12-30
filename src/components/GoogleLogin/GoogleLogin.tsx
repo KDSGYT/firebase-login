@@ -1,16 +1,21 @@
 import { Button } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 import { loginWithGoogle } from "../../assets/functions";
 import { UserCTXConsumer } from "../StateHolder/Stateholder";
 import './GoogleLogin.scss';
 
 const GoogleLogin = () => {
 
+    const history: any = useHistory();
+
     /**
      * 
      * @param value CTX value recevied with function
      */
-    async function handleClick(value: any) {
-        await loginWithGoogle(value.setUserInfo) // function to set state
+    async function handleClick(e:any,value: any) {
+        e.preventDefault()
+        await loginWithGoogle(value.setUserInfo, () =>history.push('/profile')) // function to set state
+
 
     }
 
@@ -18,7 +23,7 @@ const GoogleLogin = () => {
         <UserCTXConsumer>
             {(value: any) => (
                 <Button
-                    onClick={() => handleClick(value)}
+                    onClick={(e:any) => handleClick(e,value)}
                 >
                     {/* Google Signin Code */}
                     <div id="gSignInWrapper">
